@@ -8,9 +8,31 @@
 \usepackage{cases}
 \usepackage{geometry}
 \usepackage{enumitem}
+\usepackage{mathtools}
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=1.5cm, rmargin=1.5cm}
 \setlength{\parindent}{0cm}
+
+% \newtheoremstyle{mythmstyle}%
+%     {}%
+%     {}%
+%     {\it}%
+%     {}%
+%     {\bf}%
+%     {}%
+%     { }%
+%     {\thmname{#1}\thmnumber{ #2}%
+%     \thmnote{: #3\addcontentsline{toc}{subsubsection}{{\it#1}: #3}}.\hfill \\ }
+% \theoremstyle{mythmstyle}
+
+% \newtheorem{example}{Przykład}[section]
+\newtheorem{lemat}{Lemat}[section]
+\newtheorem{definition}{Definicja}[section]
+\newtheorem{theorem}{Twierdzenie}[section]
+\newtheorem*{conclusion}{Wniosek}
+\newtheorem*{example}{Przykład}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
 
 \title{Wstęp do teorii mnogości}
 \author{Stanisław Migórski}
@@ -19,6 +41,8 @@
 
 \begin{document}
     \maketitle
+    \tableofcontents
+    \pagebreak
 
     \section{Program} % (fold)
     \label{sec:program}
@@ -59,5 +83,328 @@
         \textbf{Pegaz: } zestawy zadań: A, B - obowiązkowe. Dowody do oceny "DDO".
 
     % section zasady_oceniania (end)
+
+    \section{Spójniki logiczne} % (fold)
+    \label{sec:spójniki_logiczne}
+
+        \subsection{Standardowe} % (fold)
+        \label{sub:standardowe}
+            $\neg$ (negacja), $\wedge$ (koniunkcja), $\vee$ (alternatywa), $\Rightarrow$ (implikacja), $\Leftrightarrow$ (równoważność)
+        % subsection standardowe (end)
+
+        \subsection{Inne spójniki} % (fold)
+        \label{sub:inne_spójniki}
+            \begin{enumerate}
+                \item \textbf{Alternatywa rozłączna} $\alpha$ i $\beta$, oznaczamy $\alpha \oplus \beta$.\\
+                Czytamy "... albo ..." lub "albo ..., albo ...".\\
+
+                \begin{center}
+                    \begin{tabular}{|c|c|c|}
+                      \hline 
+                      $\alpha$ & $\beta$ & $\alpha \oplus \beta$\\
+                      \hline
+                      0 & 0 & 0\\
+                      \hline
+                      0 & 1 & 1\\
+                      \hline
+                      1 & 0 & 1\\
+                      \hline
+                      1 & 1 & 0\\
+                      \hline
+                    \end{tabular}
+                \end{center}
+
+                \begin{equation*}
+                    (\alpha \oplus \beta) \Leftrightarrow (\neg \alpha \Leftrightarrow \beta) \Leftrightarrow (\alpha \Leftrightarrow \neg \beta) \Leftrightarrow (\neg (\alpha \Leftrightarrow \beta))
+                \end{equation*}
+
+
+                \item \textbf{Dyzjunkcja} \textit{(kreska Sheffera)} $\alpha$ i $\beta$, oznaczamy $\alpha \mid \beta$.\\
+                Czytamy "albo nie ..., albo nie .."\\
+
+                \begin{center}
+                    \begin{tabular}{|c|c|c|}
+                      \hline 
+                      $\alpha$ & $\beta$ & $\alpha \mid \beta$\\
+                      \hline
+                      0 & 0 & 1\\
+                      \hline
+                      0 & 1 & 1\\
+                      \hline
+                      1 & 0 & 1\\
+                      \hline
+                      1 & 1 & 0\\
+                      \hline
+                    \end{tabular}
+                \end{center}
+
+                \begin{equation*}
+                    (\alpha \mid \beta) \Leftrightarrow (\neg (\alpha \wedge \beta))
+                \end{equation*}
+
+                \pagebreak
+                \item \textbf{Binegacja} \textit{(strzałka Pierce'a, funktor Łukasiewicza)} $\alpha$ i $\beta$, oznaczamy $\alpha \downarrow \beta$.\\
+                Czytamy "ani ..., ani .."\\
+
+                \begin{center}
+                    \begin{tabular}{|c|c|c|}
+                      \hline 
+                      $\alpha$ & $\beta$ & $\alpha \downarrow \beta$\\
+                      \hline
+                      0 & 0 & 1\\
+                      \hline
+                      0 & 1 & 0\\
+                      \hline
+                      1 & 0 & 0\\
+                      \hline
+                      1 & 1 & 0\\
+                      \hline
+                    \end{tabular}
+                \end{center}
+
+                \begin{equation*}
+                    (\alpha \downarrow \beta) \Leftrightarrow (\neg \alpha \wedge \neg \beta)
+                \end{equation*}
+
+            \end{enumerate}
+        % subsection inne_spójniki (end)
+            
+        \subsection{Związki z OAK} % (fold)
+        \label{sub:związki_z_oak}
+            Spójniki logiczne mają przyporządkowane \underline{bramki logiczne}.
+
+            \begin{itemize}
+                \item \textbf{NOT: } $ \alpha \longmapsto \neg \alpha $ (negacja)
+                \item \textbf{AND: } $ \alpha, \beta \longmapsto \alpha \wedge \beta $ (koniunkcja)
+                \item \textbf{NAND: } $ \alpha, \beta \longmapsto \neg (\alpha \wedge \beta) $ (dyzjunkcja)
+                \item \textbf{OR: } $ \alpha, \beta \longmapsto \alpha \vee \beta $ (alternatywa)
+                \item \textbf{NOR: } $ \alpha, \beta \longmapsto \neg (\alpha \vee \beta) \Leftrightarrow (\neg \alpha \wedge \neg \beta) \Leftrightarrow (\alpha \downarrow \beta) $ (binegacja)
+                \item \textbf{XOR: } $ \alpha, \beta \longmapsto \alpha \oplus \beta $ (alternatywa rozłączna)
+                \item \textbf{XNOR: } $ \alpha, \beta \longmapsto \neg (\alpha \oplus \beta) $ (negacja alternatywy rozłącznej)
+            \end{itemize}
+        % subsection związki_z_oak (end)
+
+    % section spójniki_logiczne (end)
+
+    \section{Rachunek funkcyjny} % (fold)
+    \label{sec:rachunek_funkcyjny}
+
+        \subsection{Funkcja zdaniowa} % (fold)
+        \label{sub:funkcja_zdaniowa}
+        
+        Niech $ x_1, \ldots, x_n $ będą zbiorami.
+
+        \begin{definition}[Funkcja zdaniowa]
+            Funkcją (formą) zdaniową $ n $ zmiennych nazywamy wyrażenie (formułę) $ \varphi (x_1, \ldots, x_n) $, w którym występuje $ n $ zmiennych $ x_1, \ldots, x_n $, które zmienia się w zdanie logiczne, gdy za zmienne $ x_1, \ldots, x_n $ podstawimy nazwę dowolnego elementu ze zbiorów $ X_1, \ldots, X_n $.
+        \end{definition}
+
+        \begin{definition}[Dziedzina funkcji zdaniowej]
+            \textbf{Dziedziną} (zakresem zmienności) funkcji zdaniowej $ \varphi (x_1, \ldots, x_n) $ nazywamy iloczyn kartezjański $ x_1 \times \ldots \times x_n $ i zapisujemy $ Z(\varphi) = x_1 \times \ldots \times x_n $.
+        \end{definition}
+
+        \begin{definition}
+            Mówimy, że n-tka uporządkowona \\
+            $ (a_1, \ldots, a_n) \in X_1 \times \ldots \times X_n $ spełnia funkcję zdaniową $ \varphi (x_1, \ldots, x_n) $, jeżeli zdanie $ \varphi (a_1, \ldots, a_n) $ jest prawdziwe.
+        \end{definition}
+
+        \begin{definition}[Zbiór spełniania funkcji zdaniowej]
+            \textbf{Zbiór spełniania} funkcji zdaniowej $ \varphi (x_1, \ldots, x_n) $ określamy następująco:
+
+            \begin{equation*}
+                S(\varphi) = \{ (a_1, \ldots, a_n) \in X_1 \times \ldots \times X_n : \varphi (a_1, \ldots, a_n) = 1 \}
+            \end{equation*}
+
+            Funkcja zdaniowa $ \varphi (x_1, \ldots, x_n) $ jest prawdziwa w zbiorze $ X_1 \times \ldots \times X_n $, jeżeli $ S(\varphi) = X_1 \times \ldots \times X_n $.
+
+        \end{definition}
+        
+        \begin{theorem}
+            Niech $ \varphi(x_1 \times \ldots \times x_n) $, $ \psi(x_1 \times \ldots \times x_n) $, gdzie $ x_i \in X_i $, $ i = 1, \ldots, n $ będą funkcjami zdaniowymi. Wtedy:
+
+            \begin{enumerate}[label=\textbf{\arabic*})]
+                \item $ S( \varphi \wedge \psi ) = S( \varphi ) \cap S( \psi ) $
+                \item $ S( \varphi \vee \psi ) = S( \varphi ) \cup S( \psi ) $
+                \item $ S( \neg \varphi ) = (X_1 \times \ldots \times X_n ) \setminus S( \varphi ) $
+                \item $ S( \varphi \Rightarrow \psi ) = (( X_1 \times \ldots \times X_n ) \setminus S( \varphi ) ) \cup S( \psi ) $
+                \item $ S( \varphi \Leftrightarrow \psi ) = ( S( \varphi ) \cap S( \psi ) ) \cup ( ( ( X_1 \times \ldots \times X_n ) \cap ( ( X_1 \times \ldots \times X_n ) \setminus S( \psi ) ) ) $%(( X_1 \times \ldots \times X_n ) \setminus S( \varphi ) ) \cup S( \psi ) $
+            \end{enumerate}
+
+        \end{theorem}
+
+        \begin{definition}
+            Funkcje zdaniowe $ \varphi (x_1, \ldots, x_n) $ i $ \psi (x_1, \ldots, x_n) $ nazywamy \textbf{równoważnymi} jeżeli
+
+            \begin{equation*}
+                S(\varphi) = S(\psi).
+            \end{equation*}
+
+            Zapisujemy:
+
+            \begin{equation*}
+                \varphi (x_1, \ldots, x_n) \equiv \psi (x_1, \ldots, x_n)
+            \end{equation*}
+
+        \end{definition}
+
+        % subsection funkcja_zdaniowa (end)
+
+        \subsection{Kwantyfikatory} % (fold)
+        \label{sub:kwantyfikatory}
+            \begin{itemize}
+                \item Kwantyfikator ogólny: {\LARGE $ \forall $ }, $ \bigwedge $ (dla każdego)
+                \item Kwantyfikator szczególny: {\LARGE $ \exists $ }, $ \bigvee $ (istnieje)\\
+                \tab \tab \tab \tab {\LARGE $ \exists ! $ }, (istnieje dokładnie jeden)
+            \end{itemize}
+        % subsection kwantyfikatory (end)
+
+        \subsection{Prawa rachunku funkcyjnego} % (fold)
+        \label{sub:prawa_rachunku_funkcyjnego}
+
+            \begin{theorem}[Prawa de Morgana]
+                \[
+                    \begin{dcases*}
+                    \neg( \exists x \in X : \varphi(x)) \Leftrightarrow \forall x \in X : \neg \varphi(x) \\
+                    \neg( \forall x \in X : \varphi(x)) \Leftrightarrow \exists x \in X : \neg \varphi(x)
+                    \end{dcases*}
+                \]
+            \end{theorem}
+
+            \begin{theorem}[Prawo egzemplifikacji]
+                \begin{equation*}
+                    ( \forall x \in X : \varphi(x) ) \Rightarrow ( \exists x \in X : \varphi(x) )
+                \end{equation*}
+            \end{theorem}
+
+            \begin{theorem}[Prawo przestawiania kwantyfikatorów]
+
+                \begin{equation*}
+                    (\forall x \in X, \forall y \in Y : \varphi(x, y)) \Leftrightarrow ( \forall y \in Y, \forall x \in X : \varphi(x, y))
+                \end{equation*}
+
+                \begin{equation*}
+                    (\exists x \in X, \exists y \in Y : \varphi(x, y)) \Leftrightarrow ( \exists y \in Y, \exists x \in X : \varphi(x, y))
+                \end{equation*}
+
+                \begin{equation*}
+                    (\exists x \in X, \forall y \in Y : \varphi(x, y)) \Rightarrow ( \forall y \in Y, \exists x \in X : \varphi(x, y))
+                \end{equation*}
+
+                \begin{center}
+                    $ \Leftarrow $ nie zachodzi!!
+                \end{center}
+
+            \end{theorem}
+
+            \begin{theorem}[Prawo włączania i wyłączania kwantyfikatorów]
+
+                \[
+                    \begin{dcases*}
+                    \forall x \in X : (\varphi(x) \vee \psi) \Leftrightarrow (\forall x \in X : \varphi(x)) \vee \psi \\
+                    \exists x \in X : (\varphi(x) \vee \psi) ? (\exists x \in X : \varphi(x)) \vee \psi \\
+                    \ldots
+                    \end{dcases*}
+                \]
+
+            \end{theorem}
+
+            \begin{theorem}[Prawo rodzielności kwantyfikatora ogólnego względem koniunkcji]
+
+                \[
+                    \begin{dcases*}
+                    \forall x \in X : (\varphi(x) \wedge \psi(x)) \Leftrightarrow (\forall x \in X : \varphi(x)) \wedge (\forall x \in X : \psi(x)) \\
+                    \forall x \in X : (\varphi(x) \vee \psi(x)) \Leftarrow (\forall x \in X : \varphi(x)) \vee (\forall x \in X : \psi(x)) \\
+                    \ldots
+                    \end{dcases*}
+                \]
+
+            \end{theorem}
+
+            \begin{example}
+                Prawo rozdzielności kwantyfikatora ogólnego względem implikacji.
+
+                \begin{equation*}
+                    (\forall x \in X : ( \varphi(x) \Rightarrow \psi(x))) \Rightarrow ((\forall x \in X : \varphi(x)) \Rightarrow (\forall x \in X : \psi(x))
+                \end{equation*}
+
+                \begin{center}
+                    $ \Leftarrow $ nie zachodzi
+                \end{center}
+
+                Niech:
+                \begin{equation*}
+                    \begin{aligned}
+                        & \varphi(x) = \{ x \in \mathbb{R} : x < 0 \} \\
+                        & \psi(x) = \{ x \in \mathbb{R} : x + 1 > 0 \} \\
+                        & X = \mathbb{R}
+                    \end{aligned}
+                \end{equation*}
+
+                Wtedy:
+                \begin{equation*}
+                    \underbrace{\underbrace{(\forall x \in \mathbb{R} : (x < 0 \Rightarrow x + 1 > 0 )}_{\text{fałsz}})
+                    \Leftarrow \underbrace{(\underbrace{(\forall x \in \mathbb{R} : x < 0)}_{\text{fałsz}} \Rightarrow \underbrace{(\forall x \in \mathbb{R} : x + 1 > 0)}_{\text{fałsz}})}_{\text{prawda}}}_{\text{fałsz}}
+                \end{equation*}
+
+            \end{example}
+
+            \begin{example}
+                Prawo rodzielności kwantyfikatora szczególnego względem koniunkcji.
+
+                \begin{equation*}
+                    (\exists x \in X : ( \varphi(x) \wedge \psi(x))) \Rightarrow ((\exists x \in X : \varphi(x)) \wedge (\exists x \in X : \psi(x))
+                \end{equation*}
+
+                \begin{center}
+                    $ \Leftarrow $ nie zachodzi
+                \end{center}
+
+                Niech:
+                \begin{equation*}
+                    \begin{aligned}
+                        & \varphi(x) = \{ 2 \mid x : x \in \mathbb{N} \} \text{parzyste}\\
+                        & \psi(x) = \{ \neg 2 \mid x : x \in \mathbb{N} \} \text{nieparzyste} \\
+                        & X = \mathbb{N}
+                    \end{aligned}
+                \end{equation*}
+
+                Wtedy:
+                \begin{equation*}
+                    \underbrace{\underbrace{(\exists x \in \mathbb{N} : (2\mid x \wedge \neg 2\mid x )}_{\text{fałsz}})
+                    \Leftarrow \underbrace{(\underbrace{(\exists x \in \mathbb{N} : 2 \mid x)}_{\text{prawda}} \wedge \underbrace{(\exists x \in \mathbb{N} : \neg 2 \mid x)}_{\text{prawda}})}_{\text{prawda}}}_{\text{fałsz}}
+                \end{equation*}
+
+            \end{example}
+
+            \pagebreak
+            {\large{\textbf{Uwaga:}}}
+            \begin{enumerate}
+                \item Dla formy zdaniowej jednej zmiennej zachodzi:
+                \begin{equation*}
+                    (\forall x : P(x) \Rightarrow (\exists x \in X : P(x)))
+                \end{equation*}
+
+                \item Dla formy zdaniowej dwóch zmiennych zachodzi:
+
+                \begin{equation*}
+                    \begin{aligned}
+                        &( \forall x, \forall y : P(x, y) ) \Longleftrightarrow&( \forall y, \forall x : P(x,y)) \\
+                        & \Downarrow & \Downarrow \\
+                        &( \exists x, \forall y : P(x, y) ) & ( \exists y, \forall x : P(x,y)) \\
+                        & \Downarrow & \Downarrow \\
+                        &( \forall y, \exists x : P(x, y) ) & ( \forall x, \exists y : P(x,y)) \\
+                        & \Downarrow & \Downarrow \\
+                        &( \exists y, \exists x : P(x, y) ) & ( \exists x, \exists y : P(x,y))
+                    \end{aligned}
+                \end{equation*}
+
+            \end{enumerate}
+
+        % subsection prawa_rachunku_funkcyjnego (end)
+
+    % section rachunek_funkcyjny (end)
+
+    \section{Zbiory i działania na zbiorach} % (fold)
+    \label{sec:zbiory_i_dzialania_na_zbiorach}
+    % section zbiory_i_dzialania_na_zbiorach (end)
 
 \end{document}
