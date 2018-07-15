@@ -9,6 +9,7 @@
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{amssymb}
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=1.5cm, rmargin=1.5cm}
 \setlength{\parindent}{0cm}
@@ -24,6 +25,18 @@
 %     {\thmname{#1}\thmnumber{ #2}%
 %     \thmnote{: #3\addcontentsline{toc}{subsubsection}{{\it#1}: #3}}.\hfill \\ }
 % \theoremstyle{mythmstyle}
+
+
+\newtheoremstyle{mythmstyle}%
+    {}%
+    {}%
+    {\it}%
+    {}%
+    {\bf}%
+    {}%
+    { }%
+    {\thmname{#1}. \normalfont #3. \hfill \\ }
+\theoremstyle{mythmstyle}
 
 % \newtheorem{example}{Przykład}[section]
 \newtheorem{lemat}{Lemat}[section]
@@ -89,7 +102,7 @@
 
         \subsection{Standardowe} % (fold)
         \label{sub:standardowe}
-            $\neg$ (negacja), $\wedge$ (koniunkcja), $\vee$ (alternatywa), $\Rightarrow$ (implikacja), $\Leftrightarrow$ (równoważność)
+            $\neg$ (negacja), $\wedge$ (koniunkcja), $\vee$ (alternatywa), $\implies$ (implikacja), $\iff$ (równoważność)
         % subsection standardowe (end)
 
         \subsection{Inne spójniki} % (fold)
@@ -115,7 +128,7 @@
                 \end{center}
 
                 \begin{equation*}
-                    (\alpha \oplus \beta) \Leftrightarrow (\neg \alpha \Leftrightarrow \beta) \Leftrightarrow (\alpha \Leftrightarrow \neg \beta) \Leftrightarrow (\neg (\alpha \Leftrightarrow \beta))
+                    (\alpha \oplus \beta) \iff (\neg \alpha \iff \beta) \iff (\alpha \iff \neg \beta) \iff (\neg (\alpha \iff \beta))
                 \end{equation*}
 
 
@@ -139,7 +152,7 @@
                 \end{center}
 
                 \begin{equation*}
-                    (\alpha \mid \beta) \Leftrightarrow (\neg (\alpha \wedge \beta))
+                    (\alpha \mid \beta) \iff (\neg (\alpha \wedge \beta))
                 \end{equation*}
 
                 \pagebreak
@@ -163,7 +176,7 @@
                 \end{center}
 
                 \begin{equation*}
-                    (\alpha \downarrow \beta) \Leftrightarrow (\neg \alpha \wedge \neg \beta)
+                    (\alpha \downarrow \beta) \iff (\neg \alpha \wedge \neg \beta)
                 \end{equation*}
 
             \end{enumerate}
@@ -178,7 +191,7 @@
                 \item \textbf{AND: } $ \alpha, \beta \longmapsto \alpha \wedge \beta $ (koniunkcja)
                 \item \textbf{NAND: } $ \alpha, \beta \longmapsto \neg (\alpha \wedge \beta) $ (dyzjunkcja)
                 \item \textbf{OR: } $ \alpha, \beta \longmapsto \alpha \vee \beta $ (alternatywa)
-                \item \textbf{NOR: } $ \alpha, \beta \longmapsto \neg (\alpha \vee \beta) \Leftrightarrow (\neg \alpha \wedge \neg \beta) \Leftrightarrow (\alpha \downarrow \beta) $ (binegacja)
+                \item \textbf{NOR: } $ \alpha, \beta \longmapsto \neg (\alpha \vee \beta) \iff (\neg \alpha \wedge \neg \beta) \iff (\alpha \downarrow \beta) $ (binegacja)
                 \item \textbf{XOR: } $ \alpha, \beta \longmapsto \alpha \oplus \beta $ (alternatywa rozłączna)
                 \item \textbf{XNOR: } $ \alpha, \beta \longmapsto \neg (\alpha \oplus \beta) $ (negacja alternatywy rozłącznej)
             \end{itemize}
@@ -225,8 +238,8 @@
                 \item $ S( \varphi \wedge \psi ) = S( \varphi ) \cap S( \psi ) $
                 \item $ S( \varphi \vee \psi ) = S( \varphi ) \cup S( \psi ) $
                 \item $ S( \neg \varphi ) = (X_1 \times \ldots \times X_n ) \setminus S( \varphi ) $
-                \item $ S( \varphi \Rightarrow \psi ) = (( X_1 \times \ldots \times X_n ) \setminus S( \varphi ) ) \cup S( \psi ) $
-                \item $ S( \varphi \Leftrightarrow \psi ) = ( S( \varphi ) \cap S( \psi ) ) \cup ( ( ( X_1 \times \ldots \times X_n ) \cap ( ( X_1 \times \ldots \times X_n ) \setminus S( \psi ) ) ) $%(( X_1 \times \ldots \times X_n ) \setminus S( \varphi ) ) \cup S( \psi ) $
+                \item $ S( \varphi \implies \psi ) = (( X_1 \times \ldots \times X_n ) \setminus S( \varphi ) ) \cup S( \psi ) $
+                \item $ S( \varphi \iff \psi ) = ( S( \varphi ) \cap S( \psi ) ) \cup ( ( ( X_1 \times \ldots \times X_n ) \cap ( ( X_1 \times \ldots \times X_n ) \setminus S( \psi ) ) ) $%(( X_1 \times \ldots \times X_n ) \setminus S( \varphi ) ) \cup S( \psi ) $
             \end{enumerate}
 
         \end{theorem}
@@ -263,34 +276,34 @@
             \begin{theorem}[Prawa de Morgana]
                 \[
                     \begin{dcases*}
-                    \neg( \exists x \in X : \varphi(x)) \Leftrightarrow \forall x \in X : \neg \varphi(x) \\
-                    \neg( \forall x \in X : \varphi(x)) \Leftrightarrow \exists x \in X : \neg \varphi(x)
+                    \neg( \exists x \in X : \varphi(x)) \iff \forall x \in X : \neg \varphi(x) \\
+                    \neg( \forall x \in X : \varphi(x)) \iff \exists x \in X : \neg \varphi(x)
                     \end{dcases*}
                 \]
             \end{theorem}
 
             \begin{theorem}[Prawo egzemplifikacji]
                 \begin{equation*}
-                    ( \forall x \in X : \varphi(x) ) \Rightarrow ( \exists x \in X : \varphi(x) )
+                    ( \forall x \in X : \varphi(x) ) \implies ( \exists x \in X : \varphi(x) )
                 \end{equation*}
             \end{theorem}
 
             \begin{theorem}[Prawo przestawiania kwantyfikatorów]
 
                 \begin{equation*}
-                    (\forall x \in X, \forall y \in Y : \varphi(x, y)) \Leftrightarrow ( \forall y \in Y, \forall x \in X : \varphi(x, y))
+                    (\forall x \in X, \forall y \in Y : \varphi(x, y)) \iff ( \forall y \in Y, \forall x \in X : \varphi(x, y))
                 \end{equation*}
 
                 \begin{equation*}
-                    (\exists x \in X, \exists y \in Y : \varphi(x, y)) \Leftrightarrow ( \exists y \in Y, \exists x \in X : \varphi(x, y))
+                    (\exists x \in X, \exists y \in Y : \varphi(x, y)) \iff ( \exists y \in Y, \exists x \in X : \varphi(x, y))
                 \end{equation*}
 
                 \begin{equation*}
-                    (\exists x \in X, \forall y \in Y : \varphi(x, y)) \Rightarrow ( \forall y \in Y, \exists x \in X : \varphi(x, y))
+                    (\exists x \in X, \forall y \in Y : \varphi(x, y)) \implies ( \forall y \in Y, \exists x \in X : \varphi(x, y))
                 \end{equation*}
 
                 \begin{center}
-                    $ \Leftarrow $ nie zachodzi!!
+                    $ \impliedby $ nie zachodzi!!
                 \end{center}
 
             \end{theorem}
@@ -299,7 +312,7 @@
 
                 \[
                     \begin{dcases*}
-                    \forall x \in X : (\varphi(x) \vee \psi) \Leftrightarrow (\forall x \in X : \varphi(x)) \vee \psi \\
+                    \forall x \in X : (\varphi(x) \vee \psi) \iff (\forall x \in X : \varphi(x)) \vee \psi \\
                     \exists x \in X : (\varphi(x) \vee \psi) ? (\exists x \in X : \varphi(x)) \vee \psi \\
                     \ldots
                     \end{dcases*}
@@ -311,8 +324,8 @@
 
                 \[
                     \begin{dcases*}
-                    \forall x \in X : (\varphi(x) \wedge \psi(x)) \Leftrightarrow (\forall x \in X : \varphi(x)) \wedge (\forall x \in X : \psi(x)) \\
-                    \forall x \in X : (\varphi(x) \vee \psi(x)) \Leftarrow (\forall x \in X : \varphi(x)) \vee (\forall x \in X : \psi(x)) \\
+                    \forall x \in X : (\varphi(x) \wedge \psi(x)) \iff (\forall x \in X : \varphi(x)) \wedge (\forall x \in X : \psi(x)) \\
+                    \forall x \in X : (\varphi(x) \vee \psi(x)) \impliedby (\forall x \in X : \varphi(x)) \vee (\forall x \in X : \psi(x)) \\
                     \ldots
                     \end{dcases*}
                 \]
@@ -323,11 +336,11 @@
                 Prawo rozdzielności kwantyfikatora ogólnego względem implikacji.
 
                 \begin{equation*}
-                    (\forall x \in X : ( \varphi(x) \Rightarrow \psi(x))) \Rightarrow ((\forall x \in X : \varphi(x)) \Rightarrow (\forall x \in X : \psi(x))
+                    (\forall x \in X : ( \varphi(x) \implies \psi(x))) \implies ((\forall x \in X : \varphi(x)) \implies (\forall x \in X : \psi(x))
                 \end{equation*}
 
                 \begin{center}
-                    $ \Leftarrow $ nie zachodzi
+                    $ \impliedby $ nie zachodzi
                 \end{center}
 
                 Niech:
@@ -341,8 +354,8 @@
 
                 Wtedy:
                 \begin{equation*}
-                    \underbrace{\underbrace{(\forall x \in \mathbb{R} : (x < 0 \Rightarrow x + 1 > 0 )}_{\text{fałsz}})
-                    \Leftarrow \underbrace{(\underbrace{(\forall x \in \mathbb{R} : x < 0)}_{\text{fałsz}} \Rightarrow \underbrace{(\forall x \in \mathbb{R} : x + 1 > 0)}_{\text{fałsz}})}_{\text{prawda}}}_{\text{fałsz}}
+                    \underbrace{\underbrace{(\forall x \in \mathbb{R} : (x < 0 \implies x + 1 > 0 )}_{\text{fałsz}})
+                    \impliedby \underbrace{(\underbrace{(\forall x \in \mathbb{R} : x < 0)}_{\text{fałsz}} \implies \underbrace{(\forall x \in \mathbb{R} : x + 1 > 0)}_{\text{fałsz}})}_{\text{prawda}}}_{\text{fałsz}}
                 \end{equation*}
 
             \end{example}
@@ -351,11 +364,11 @@
                 Prawo rodzielności kwantyfikatora szczególnego względem koniunkcji.
 
                 \begin{equation*}
-                    (\exists x \in X : ( \varphi(x) \wedge \psi(x))) \Rightarrow ((\exists x \in X : \varphi(x)) \wedge (\exists x \in X : \psi(x))
+                    (\exists x \in X : ( \varphi(x) \wedge \psi(x))) \implies ((\exists x \in X : \varphi(x)) \wedge (\exists x \in X : \psi(x))
                 \end{equation*}
 
                 \begin{center}
-                    $ \Leftarrow $ nie zachodzi
+                    $ \impliedby $ nie zachodzi
                 \end{center}
 
                 Niech:
@@ -370,7 +383,7 @@
                 Wtedy:
                 \begin{equation*}
                     \underbrace{\underbrace{(\exists x \in \mathbb{N} : (2\mid x \wedge \neg 2\mid x )}_{\text{fałsz}})
-                    \Leftarrow \underbrace{(\underbrace{(\exists x \in \mathbb{N} : 2 \mid x)}_{\text{prawda}} \wedge \underbrace{(\exists x \in \mathbb{N} : \neg 2 \mid x)}_{\text{prawda}})}_{\text{prawda}}}_{\text{fałsz}}
+                    \impliedby \underbrace{(\underbrace{(\exists x \in \mathbb{N} : 2 \mid x)}_{\text{prawda}} \wedge \underbrace{(\exists x \in \mathbb{N} : \neg 2 \mid x)}_{\text{prawda}})}_{\text{prawda}}}_{\text{fałsz}}
                 \end{equation*}
 
             \end{example}
@@ -380,14 +393,14 @@
             \begin{enumerate}
                 \item Dla formy zdaniowej jednej zmiennej zachodzi:
                 \begin{equation*}
-                    (\forall x : P(x) \Rightarrow (\exists x \in X : P(x)))
+                    (\forall x : P(x) \implies (\exists x \in X : P(x)))
                 \end{equation*}
 
                 \item Dla formy zdaniowej dwóch zmiennych zachodzi:
 
                 \begin{equation*}
                     \begin{aligned}
-                        &( \forall x, \forall y : P(x, y) ) \Longleftrightarrow&( \forall y, \forall x : P(x,y)) \\
+                        &( \forall x, \forall y : P(x, y) ) \iff &( \forall y, \forall x : P(x,y)) \\
                         & \Downarrow & \Downarrow \\
                         &( \exists x, \forall y : P(x, y) ) & ( \exists y, \forall x : P(x,y)) \\
                         & \Downarrow & \Downarrow \\
@@ -407,4 +420,378 @@
     \label{sec:zbiory_i_dzialania_na_zbiorach}
     % section zbiory_i_dzialania_na_zbiorach (end)
 
+    \subsection{Pojęcia} % (fold)
+    \label{sub:pojęcia}
+    
+    % subsection pojęcia (end)
+        \begin{itemize}
+            \item Pojęcie zbioru jest pojęciem \underline{pierwotnym}.
+                \begin{align*}
+                    & \mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C} - \text{zbiory liczbowe} \\
+                    & \mathbb{N} = \{0, 1, 2, \ldots\} \text{\tab \textit{(Pezno)}} \\
+                    & \mathbb{N}_{1} = \{1, 2, \ldots\}
+                \end{align*}
+
+            \item Pojęcie "należenia do zbioru"
+                \begin{equation*}
+                    1 \in \mathbb{N}, (\neg (\sqrt{2} \in \mathbb{N} )) \iff (\sqrt{2} \notin \mathbb{N})
+                \end{equation*}
+
+            \item Zasada równości zbiorów
+                \begin{align*}
+                    & A = B, tzn. \forall x : \underbrace{(x \in A \implies x \in B)}_{A \subset B} \wedge \underbrace{(x \in B \implies x \in A)}_{B \subset A} \\
+                    & A \subset B, wtw. \forall x : (x \in A \implies x \in B)
+                \end{align*}
+
+                To znaczy, aby udowodnić, że $ \mathbf{A = B} $ dowodzimy
+                \begin{equation*}
+                  \forall x \begin{cases}
+                    & x \in A \implies x \in B \\
+                    & x \in B \implies x \in A
+                  \end{cases} \\
+                \end{equation*}
+                \begin{equation*}
+                    A \subset B \wedge B \subset A
+                \end{equation*}
+
+            \item Oznaczamy
+                \begin{align*}
+                    & \{a, b\} \tab & \text{para uporządkowana} \\
+                    & \{a\} & \text{singleton} \\
+                    & \{a, a\} = \{a\}  \\
+                \end{align*}
+
+            \item Definiowanie zbiorów
+                \begin{enumerate}
+                    \item Wypisujemy elementy zbioru
+                    \item $ \mathbf{A = \{ x \in X : W(x) \} } $ \\
+                    $ \text{Par} = \{x \in \mathbb{N} : \underbrace{2 \mid x}_{W(x)} \}, \tab \{ \underbrace{ \{1, 2\} }_{\text{jeden element}}\} \neq \{1, 2\} $
+                \end{enumerate}
+
+        \end{itemize}
+            % \item \textbf{Zbiór potęgowy}
+        % \noindent\rule{\textwidth}{1pt}
+
+        \begin{definition}[Zbiór potęgowy]
+            Zbiorem potęgowym zbioru A nazywamy zbiór złożony ze wszystkich pozbiorów zbioru A, tzn. $ \mathcal{P}(A) = \{X : X \subset A \} $
+        \end{definition}
+
+        Zbiór potęgowy $ \mathcal{P}(A) $ zbioru $ A $.
+        \begin{align*}
+            & \{ \varnothing, A \} \subset \mathcal{P}(A) \longleftarrow \\
+            & \mathcal{P}(\varnothing) = \{\varnothing\} \\
+            & \mathcal{P}(\{1\}) = \{\varnothing, \{1\}\} \\
+            & \mathcal{P}(\{1, 2\}) = \{\varnothing, \{1\}, \{2\}, \{1, 2\} \} \\
+            & \ldots
+        \end{align*}
+
+        \subsection{Działania na zbiorach} % (fold)
+        \label{sub:dzialania_na_zbiorach}
+
+        \begin{definition}[Suma zbiorów]
+            Sumą zbiorów $A$ i $B$ nazywamy zbiór złożony z tych i tylko z tych elementów, które należą do co najmniej jednego z tych zbiorów.
+
+            \begin{equation*}
+                A \cup B = \{ x : x \in A \vee x \in B \}
+            \end{equation*}
+
+        \end{definition}
+
+        \begin{theorem}
+            Jeżeli $A$ i $B$ są zbiorami, to wtedy:
+
+            \begin{enumerate}
+                \item $ A \subset A \cup B, \tab B \subset A \cup B $
+
+                \item $ ( A \subset C \wedge B \subset C ) \implies A \cup B \subset C $
+            \end{enumerate}
+        \end{theorem}
+
+        \pagebreak
+        Niech $ \mathcal{A} $ będzie rodziną zbiorów (tzn. zbiorami, którego elemantami są zbiory).
+
+        \begin{definition}[Suma rodziny]
+            Suma rodziny $ \mathcal{A} $ jest zbiorem złożonym z tych i tylko tych elementów, które należą do co najmniej jednego spośród zbiorów należących do rodziny $ \mathcal{A} $, tzn. $ x \in \bigcup \mathcal{A} $ wtw. $ \exists A \in \mathcal{A} : x \in \mathcal{A} $
+        \end{definition}
+
+        Jest uogólnienie pojęcia sumy zbiorów.
+
+        \begin{equation*}
+            \bigcup \{ A, B \} = A \cup B, \tab \bigcup \{ A, B, C \} = A \cup B \cup C
+        \end{equation*}
+
+        \begin{theorem}
+            \textbf{Jeżeli} $ \mathcal{A} $ jest rodziną zbiorów, \underline{to} wtedy
+
+            \begin{enumerate}
+                \item $ \forall A : ( A \in \mathcal{A} \implies A \subset \bigcup \mathcal{A} ) $
+
+                \item \textbf{Jeżeli} C jest zbiorem o następującej własności:
+                    \begin{equation*}
+                        \forall A : ( A \in \mathcal{A} \implies A \subset C )
+                    \end{equation*}
+
+                    \textbf{To} \tab $ \bigcup \mathcal{A} \subset C $
+            \end{enumerate}
+        \end{theorem}
+
+        \begin{definition}[Iloczyn zbiorów]
+            Iloczynem zbiorów (przecięciem, częścią wspólną) A i B nazywamy zbiór złożony z tych i tylko z tych elementów, które należą jednocześnie do A i B.
+
+            \begin{equation*}
+                A \cap B = \{ x : x \in A \wedge x \in B \}
+            \end{equation*}
+
+        \end{definition}
+
+        \begin{theorem}
+            Jeżeli A i B są zbiorami, to
+
+            \begin{enumerate}
+                \item $ A \cap B \subset A, A \cap B \subset B $
+
+                \item $ ( C \subset A \wedge C \subset B ) \implies C \subset A \cap B $
+            \end{enumerate}
+            
+            Jeżeli $ A \cap B = \varnothing $, to A i B nazywamy rozłącznymi.                 
+        \end{theorem}
+
+        \pagebreak
+
+        Niech $ \mathcal{A} $ będzie niepustą rodziną zbiorów.
+
+        \begin{definition}[Iloczyn rodziny]
+            Iloczynem rodziny $ \mathcal{A} $ nazywamy zbiór złożony z tych i tylko z tych
+            elementów, które należą do każdego spośród zbiórów należących do rodziny $ \mathcal{A} $,
+            tzn.
+
+            \begin{equation*}
+                x \in \bigcap \mathcal{A} \iff \forall A \in \mathcal{A} : x \in A
+            \end{equation*}
+        \end{definition}
+
+        Jest uogólnienie pojęcia iloczynu zbiorów.
+        \begin{equation*}
+            \bigcap \{ A, B \} = A \cap B, \tab \bigcap \{ A, B, C \} = A \cap B \cap C
+        \end{equation*}
+
+        \begin{theorem}
+            \textbf{Jeżeli} $ \mathcal{A} $ jest niepustą rodziną zbiorów, \underline{to} wtedy
+
+            \begin{enumerate}
+                \item $ \forall A : ( A \in \mathcal{A} \implies \bigcap \mathcal{A} \subset A ) $
+
+                \item \textbf{Jeżeli} C jest zbiorem o następującej własności:
+                    \begin{equation*}
+                        \forall A : ( A \in \mathcal{A} \implies C \subset A )
+                    \end{equation*}
+
+                    \textbf{To} \tab $ C \subset \bigcap \mathcal{A} $
+            \end{enumerate}
+        \end{theorem}
+
+
+        \begin{definition}[Różnica zbiorów]
+            Różnicą zbiorów A i B nazywamy zbiór złożony z tych i tylko z tych
+            elementów, które należą do A i nie należą do B, tzn.
+
+            \begin{equation*}
+                A \setminus B = \{ x: x \in A \wedge \neg x \in B \} = \{ x: x \in A \wedge x \notin B \}
+            \end{equation*}
+        \end{definition}
+
+        \begin{theorem}
+            Jeżeli $ A \wedge B $ są zbiorami, to
+
+            \begin{enumerate}
+                \item $ A \setminus B \subset A, (A \setminus B) \cap B = \varnothing $
+
+                \item $ C \subset A, C \cap B \neq \varnothing ) \implies C \subset A \setminus B $
+            \end{enumerate}
+        \end{theorem}
+
+        \begin{definition}[Dopełnienie zbioru]
+            Dopełnieniem (uzupełnieniem) zbioru A w zbiorze S nazywamy zbiór $ S \setminus A $, piszemy
+
+            \begin{equation*}
+                A' = S \setminus A = \setminus A
+            \end{equation*}
+        \end{definition}
+
+        \begin{definition}[Różnica symetryczna]
+            Różnicą symetryczną zbiorów A i B nazywamy zbiór zdefiniowany:
+            \begin{align*}
+                & A \bigtriangleup B = A \div B = ( A \setminus B ) \cup ( B \setminus A ) \\
+                & x \in A \div B \iff x \in A \setminus B \vee x \in B \setminus A \\
+                & A \div B = \varnothing \iff A = B
+            \end{align*}
+        \end{definition}
+
+        % subsection działania_na_zbiorach (end)
+
+        \subsection{Zbiory skończone} % (fold)
+        \label{sub:zbiory_skończone}
+            
+        \begin{definition}[Zbiór skończony]
+            Zbiór A nazywamy zbiorem skończonym jeżeli A zawiera m różnych elementów, gdzie $ m \in \{ 0, 1, 2, \ldots \} $.
+        \end{definition}
+        \begin{align*}
+            \text{\textbf{Oznaczamy: }} & n(A) \text{ - liczba elementów skończonego zbioru} \\
+            & A = |A| = \bar{\bar{A}} = \#A
+        \end{align*}
+
+        \textbf{Własności.} \\
+        Jeżeli A, B, C są zbiorami skończonymi, to
+
+        \begin{enumerate}
+            \item $ A \cup B $, $ A \cap B $ są zbiorami skończonymi, \\
+                  $ n(A \cup B) = n(A) + n(B) - n(A \cap B) $.\\\\
+                  Jeżeli A i B są rozłączne, to $ n(A \cup B) = n(A) + n(B) $.
+            \item Zbiór A jest podzbiorem skończonego zbioru E. \\
+                  Wtedy $ n(A') = n(E) - n(A) $.
+            \item $ n(A \setminus B) = n(A) - n(A \cap B) $.
+            \item $ n(A \cup B \cup C) = n(A) + n(B) + n(C) - n(A \cap B) - n(A \cap C) $ \\ \tab\tab $ - n(B \cap C) + n(A \cap B \cap C) $.
+            \item $ n(\mathcal{P}(A)) = 2^{n(A)} $.
+
+        \end{enumerate}
+        % subsection zbiory_skończone (end)
+
+        \pagebreak
+        \section{Para uporządkowana} % (fold)
+        \label{sec:para_uporządkowana}
+
+        \subsection{Para uporządkowana} % (fold)
+        \label{sub:para_uporządkowana}
+        
+
+            \begin{definition}[Para uporządkowana (Kuratowski)]
+                Parą uporządkowaną elementów a i b nazywamy $ (a, b) = \{ \{a\}, \{a, b\} \} $.
+            \end{definition}
+
+            \begin{theorem}
+                Dla każdego a, b, c, d zachodzi
+                \begin{equation*}
+                    \{ \{a\}, \{a, b\} \} = \{ \{c\}, \{c, d\} \} \iff a = c \wedge b = d
+                \end{equation*}
+                \begin{equation*}
+                    (a, b) = (c, d)
+                \end{equation*}
+            \end{theorem}
+
+            \textbf{Dowód.}
+            \begin{itemize}
+                \item $ \impliedby $ oczywiste
+                \item $ \implies $
+                    \begin{enumerate}
+                        \item Jeżeli $ a = b $, to $ \{ \{a\}, \{a, b\} \} = \{ \{a\} \}\tab (\{a, a\} = \{a\} )$ \\
+                              oraz $ \{c, d\} \in \{ \{a\} \} $. Wtedy $ c = d = a $. Zatem $ a = b = c =d $.
+
+                        \item Jeżeli $ a \neq b $, to $ \{c\} \in \{ \{a\}, \{a, b\} \} $. \\
+                              Ponieważ $ a \neq b $, to $ \{c\} \notin \{a, b\} $. \\
+                              Wtedy $ \{c\} =  \{a\} $, tzn. $ \underline{a = c} $. \\
+                              Z drugiej strony, $ \{a, b\} \in \{ \{c\}, \{c, d\} \} $.\\
+                              Ponieważ $ a \neq b $, to $ \{a, b\} = \{c, d\} $ oraz $ \underline{b = d} $.
+                    \end{enumerate}
+            \end{itemize}
+
+        % subsection para_uporządkowana (end)
+
+        \subsection{Iloczyn kartezjański} % (fold)
+        \label{sub:iloczyn_kartezjański}
+            
+            \begin{definition}[Iloczyn kartezjański]
+                Iloczyn kartezjański zbiorów A i B to zbiór, do którego należą wszystkie pary
+                uporządkowane $ (a, b) $, gdzie $ a \in A $, $ b \in B $.
+
+                \begin{equation*}
+                    A \times B = \{ x: \exists a \in A, \exists b \in B, x = (a, b) \}
+                \end{equation*}
+                \begin{equation*}
+                    \text{Piszemy  } A^2 = A \times A
+                \end{equation*}
+            \end{definition}
+
+            Uogólnienie na trójki uporządkowane:
+            \begin{equation*}
+                (a, b, c) = ((a,b), c)
+            \end{equation*}
+            \begin{equation*}
+                A_1 \times \ldots \times A_n = \{ (a_1, \ldots, a_n), a_i \in A_i 
+                : \forall i = 1, \ldots, n \} = \times_{i=1}^{n} A_i
+            \end{equation*}
+
+            \textbf{Przykład.}
+            \begin{align*}
+                A \times (B \cap C) &= (A \times B) \cap (A \times C)\\
+                & \subset \\
+                & \supset
+            \end{align*}
+
+            \textbf{Dowód.}
+            \begin{itemize}
+                \item "$ \subset $" \\
+                    Pokażemy, że $ A \times (B \cap C) = (A \times B) \cap (A \times C) $. \\
+                    Niech $ (x, y) \in A \times (B \cap C) $. Wtedy $ x \in A \wedge y \in B \cap C $. \\
+                    Zatem $ x \in A \wedge (y \in B \wedge y \in C) $. \\
+                    Mamy $ (x \in A \wedge y \in B) \wedge (x \in A \wedge y \in C) $. \\
+                    Stąd $ \underline{(x, y)} \in A \times B $ i $ \underline{(x, y)} \in A \times C $. \\
+                    Zachodzi $ \underline{(x, y) \in (A \times B) \cap (A \times C)} $.
+
+                \item "$ \supset $" \\
+                    Pokażemy, że $ (A \times B) \cap (A \times C) \subset A \times (B \cap C) $. \\
+                    Niech $ \underline{(x, y) \in (A \times B) \cap (A \times C)} $. \\
+                    Stąd $ (x, y) \in A \times B \wedge (x, y) \in A \times C $. \\
+                    Wtedy $ (x \in A \wedge y \in B) \wedge (x \in A \wedge y \in C) $. \\
+                    Otrzymujemy $ x \in A \wedge (y \in B \wedge y \in C) $, tzn.
+                    $ x \in A \wedge y \in B \cap C $. \\
+                    Ostatecznie $ \underline{(x, y) \in A \times (A \cap C)} $
+
+                \item Ponieważ $ \subset $ i $ \supset $ to
+                    \begin{equation*}
+                        A \times (B \cap C) \iff (A \times B) \cap (A \times C)
+                    \end{equation*}
+            \end{itemize}
+
+            \pagebreak
+            \textbf{Przykład.}
+            \begin{align*}
+                (A \setminus B) \times C) = (A \times C) \setminus (A \times C)\\
+            \end{align*}
+
+            \textbf{Dowód.}
+            \begin{itemize}
+                \item "$ \subset $"
+                    \begin{align*}
+                        \text{Niech  } (x, y) \in (A \setminus B) \times C &\iff 
+                        ((x \in A \setminus B) \wedge (y \in C)) \\
+                        &\iff ((x \in A \wedge x \notin B) \wedge (y \in C)) \\
+                        &\iff ((x \in A \wedge \neg x \in B) \wedge (y \in C)).
+                    \end{align*}
+
+                \item "$ \supset $"
+                    \begin{align*}
+                        \text{Niech  } (x, y) \in (A \times C) \setminus (B \times C) &\iff \\
+                        &\iff((x, y) \in A \times C) \wedge ((x, y) \notin B \times C) \\
+                        &\iff(x \in A \wedge y \in C) \wedge (\neg (x, y) \in B \times C)  \\
+                        &\iff(x \in A \wedge y \in C) \wedge \neg(x \in B \wedge y \in C)  \\
+                        &\iff(x \in A \wedge y \in C) \wedge (\neg(x \in B) \wedge \neg(y \in C))
+                    \end{align*}
+
+                \item Oznaczamy
+                    \begin{equation*}
+                      \begin{cases}
+                        &p: x \in A \\
+                        &q : x \in B \\
+                        &r : y \in C
+                      \end{cases}
+                    \end{equation*}
+            \end{itemize}
+        % subsection iloczyn_kartezjański (end)
+
+        % section para_uporządkowana (end)
+
+        % \section{Relacje} % (fold)
+        % \label{sec:relacje}
+            
+        % section relacje (end)
 \end{document}
