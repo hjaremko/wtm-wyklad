@@ -35,7 +35,7 @@
     {\bf}%
     {}%
     { }%
-    {\thmname{#1}. \normalfont #3. \hfill \\ }
+    {\thmname{#1}. \normalfont #3 \hfill \\ }
 \theoremstyle{mythmstyle}
 
 % \newtheorem{example}{Przykład}[section]
@@ -44,6 +44,8 @@
 \newtheorem{theorem}{Twierdzenie}[section]
 \newtheorem*{conclusion}{Wniosek}
 \newtheorem*{example}{Przykład}
+
+\newcommand\ass{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily zał}}}{=}}}
 
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 
@@ -199,6 +201,7 @@
 
     % section spójniki_logiczne (end)
 
+    \pagebreak
     \section{Rachunek funkcyjny} % (fold)
     \label{sec:rachunek_funkcyjny}
 
@@ -332,9 +335,7 @@
 
             \end{theorem}
 
-            \begin{example}
-                Prawo rozdzielności kwantyfikatora ogólnego względem implikacji.
-
+            \begin{example}[Prawo rozdzielności kwantyfikatora ogólnego względem implikacji]
                 \begin{equation*}
                     (\forall x \in X : ( \varphi(x) \implies \psi(x))) \implies ((\forall x \in X : \varphi(x)) \implies (\forall x \in X : \psi(x))
                 \end{equation*}
@@ -360,9 +361,8 @@
 
             \end{example}
 
-            \begin{example}
-                Prawo rodzielności kwantyfikatora szczególnego względem koniunkcji.
-
+            \pagebreak
+            \begin{example}[Prawo rodzielności kwantyfikatora szczególnego względem koniunkcji]
                 \begin{equation*}
                     (\exists x \in X : ( \varphi(x) \wedge \psi(x))) \implies ((\exists x \in X : \varphi(x)) \wedge (\exists x \in X : \psi(x))
                 \end{equation*}
@@ -388,7 +388,6 @@
 
             \end{example}
 
-            \pagebreak
             {\large{\textbf{Uwaga:}}}
             \begin{enumerate}
                 \item Dla formy zdaniowej jednej zmiennej zachodzi:
@@ -416,6 +415,7 @@
 
     % section rachunek_funkcyjny (end)
 
+    \pagebreak
     \section{Zbiory i działania na zbiorach} % (fold)
     \label{sec:zbiory_i_dzialania_na_zbiorach}
     % section zbiory_i_dzialania_na_zbiorach (end)
@@ -507,7 +507,6 @@
             \end{enumerate}
         \end{theorem}
 
-        \pagebreak
         Niech $ \mathcal{A} $ będzie rodziną zbiorów (tzn. zbiorami, którego elemantami są zbiory).
 
         \begin{definition}[Suma rodziny]
@@ -520,6 +519,7 @@
             \bigcup \{ A, B \} = A \cup B, \tab \bigcup \{ A, B, C \} = A \cup B \cup C
         \end{equation*}
 
+        \pagebreak
         \begin{theorem}
             \textbf{Jeżeli} $ \mathcal{A} $ jest rodziną zbiorów, \underline{to} wtedy
 
@@ -556,7 +556,6 @@
             Jeżeli $ A \cap B = \varnothing $, to A i B nazywamy rozłącznymi.                 
         \end{theorem}
 
-        \pagebreak
 
         Niech $ \mathcal{A} $ będzie niepustą rodziną zbiorów.
 
@@ -575,6 +574,8 @@
             \bigcap \{ A, B \} = A \cap B, \tab \bigcap \{ A, B, C \} = A \cap B \cap C
         \end{equation*}
 
+        \pagebreak
+        
         \begin{theorem}
             \textbf{Jeżeli} $ \mathcal{A} $ jest niepustą rodziną zbiorów, \underline{to} wtedy
 
@@ -629,6 +630,7 @@
 
         % subsection działania_na_zbiorach (end)
 
+        \pagebreak
         \subsection{Zbiory skończone} % (fold)
         \label{sub:zbiory_skończone}
             
@@ -789,9 +791,389 @@
         % subsection iloczyn_kartezjański (end)
 
         % section para_uporządkowana (end)
+        \pagebreak
+        \section{Relacje} % (fold)
+        \label{sec:relacje}
+        
+        \subsection{Relacje} % (fold)
+        \label{sub:relacje}
+        
+        % subsubsection relacje (end)
+            \begin{definition}[Relacja]
+                Relacją R w zbiorze $ X \times Y $ nazywamy dowolny podzbiór $ R \subset X \times Y $,
+                R nazywamy relacją \underline{binarną}.
+            \end{definition}
 
-        % \section{Relacje} % (fold)
-        % \label{sec:relacje}
+            \begin{definition}
+                Niech R będzie relacją w zbiorze $ X $ tzn. $ R \subset X \times X $,
+                
+                \begin{enumerate}
+                    \item R nazywamy \textbf{zwrotną} wtw.
+                        \begin{equation*}
+                             \forall x \in X : x R x
+                         \end{equation*}
+                    \item R nazywamy \textbf{przeciwzwrotną} wtw.
+                        \begin{equation*}
+                             \forall x \in X : \neg x R x
+                         \end{equation*}
+                    \item R nazywamy \textbf{symetryczną} wtw.
+                        \begin{equation*}
+                             \forall x, y \in X : ( x R y \implies y R x )
+                         \end{equation*}
+                    \item R nazywamy \textbf{przeciwsymetryczną} (asymetryczną) wtw.
+                        \begin{equation*}
+                             \forall x, y \in X : ( x R y \implies \neg(y R x) )
+                         \end{equation*}
+                    \item R nazywamy \textbf{słabo antysymetryczną} wtw.
+                        \begin{equation*}
+                             \forall x, y \in X : ( x R y \wedge y R x \implies x = y) )
+                         \end{equation*}
+                    \item R nazywamy \textbf{przechodnią} wtw.
+                        \begin{equation*}
+                             \forall x, y, z \in X : ( x R y \wedge y R z \implies x R z )
+                         \end{equation*}
+                    \item R nazywamy \textbf{spójną} wtw.
+                        \begin{equation*}
+                             \forall x, y \in X : ( \underbrace{x R y \vee y R x}_{\text{x i y są porównywalne}} \vee x = y )
+                         \end{equation*}
+                \end{enumerate}
+            \end{definition}
+
+            \pagebreak
+            \begin{example}
+                \begin{equation*}
+                    \text{Niech   } R \subset \mathbb{R} \times \mathbb{R}
+                \end{equation*}
+                \begin{equation*}
+                    x R y \iff x \leq |y|, \forall x, y \in \mathbb{R}.
+                \end{equation*}
+            \end{example}
+
+            \begin{enumerate}
+                \item R \textbf{zwrotna}?
+                    \begin{equation*}
+                        \forall x \in \mathbb{R}: x \leq |x|
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{TAK}
+                    \end{center}
+
+                \item R \textbf{przeciwzwrotna}?
+                    \begin{equation*}
+                        \forall x \in \mathbb{R}: \neg x \leq |x|
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 1 $
+                    \end{center}
+
+                \item R \textbf{symetryczna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{R}: ( x \leq |y| \implies y \leq |x| )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 0, y = 1 $
+                    \end{center}
+
+                \item R \textbf{przeciwsymetryczna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{R}: ( x \leq |y| \implies \neg y \leq |x| )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = y = 0 $
+                    \end{center}
+
+                \item R \textbf{słabo antysymetrczyna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{R}: ( x \leq |y| \wedge y \leq |x| \implies x = y )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 2, y = -2 $
+                    \end{center}
+
+                \item R \textbf{przechodnia}?
+                    \begin{equation*}
+                        \forall x, y, z \in \mathbb{R}: ( x \leq |y| \wedge y \leq |z| \implies x \leq |z| )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 3, y = -5, z = 2 $
+                    \end{center}
+
+                \item R \textbf{spójna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{R}: ( x \leq |y| \vee y \leq |x| \vee x = y )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{TAK}, ponieważ $ \forall x, y \in \mathbb{R} : ( x = y \vee x < y \vee y < x ) $\\
+                        oraz $ \forall w \in \mathbb{R} : w \leq |w| $\\
+                        zatem $ \forall x, y \in \mathbb{R}: ( x < |y| \vee y < |x| \vee x = y ) $ \\
+                        stąd R spójna
+                    \end{center}
+            \end{enumerate}
+            R jest zwrotna i spójna.
+
+            \pagebreak
+            \begin{example}
+                \begin{equation*}
+                    \text{Niech   } R \subset \mathbb{Z} \times \mathbb{Z}
+                \end{equation*}
+                \begin{equation*}
+                    x R y \iff 3 \mid (x - y), \forall x, y \in \mathbb{Z}.
+                \end{equation*}
+            \end{example}
+
+            \begin{enumerate}
+                \item R \textbf{zwrotna}?
+                    \begin{equation*}
+                        \forall x \in \mathbb{Z}: 3 \mid (x - x)
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{TAK}
+                    \end{center}
+
+                \item R \textbf{przeciwzwrotna}?
+                    \begin{equation*}
+                        \forall x \in \mathbb{Z}: \neg (3 \mid (x - x))
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 0 $
+                    \end{center}
+
+                \item R \textbf{symetryczna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{Z}: (3 \mid (x - y) \implies 3 \mid (y - x) )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{TAK}: Niech $ x R y \iff \exists k \in \mathbb{Z} : x - y = 3k $,
+                                      wtedy $ \exists l = k \in \mathbb{Z} $ takie, że $ y - x = 3l $. \\
+                                      Stąd $ y R x $.
+                    \end{center}
+
+                \item R \textbf{przeciwsymetryczna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{Z}: ( 3 \mid (x - y) \implies \neg (3 \mid (y - x)) )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 6, y = 3 $
+                    \end{center}
+
+                \item R \textbf{słabo antysymetrczyna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{Z}: ( 3 \mid (x - y) \wedge 3 \mid (y - x) \implies x = y )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 6, y = 3 $
+                    \end{center}
+
+                \pagebreak
+                \item R \textbf{przechodnia}?
+                    \begin{equation*}
+                        \forall x, y, z \in \mathbb{Z}: ( 3 \mid (x - y) \wedge 3 \mid (y - z) \implies 3 \mid (x - z) )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{TAK}: Niech $ 3 \mid (x - y) \wedge 3 \mid (y - z) $. \\
+                                      Stąd $ x - y = 3k, k \in \mathbb{Z} $ \\
+                                      $ y - z = 3l, l \in \mathbb{Z} $. \\
+                                      Zatem $ x - y + y - z = 3k + 3l $ \\
+                                      $ x - z = 3(k + l) $. \\
+                                      Niech $ m = k + l, m \in \mathbb{Z} $, bo wtedy \\
+                                      $ x - z = 3m $, tzn. $ 3 \mid (x - z) $.
+                    \end{center}
+
+                \item R \textbf{spójna}?
+                    \begin{equation*}
+                        \forall x, y \in \mathbb{Z}: ( 3 \mid (x - y) \vee 3 \mid (y - x) \vee x = y )
+                    \end{equation*}
+                    \begin{center}
+                        \textbf{NIE}, np. $ x = 2, y = 1 $, bo $ ( 2 \neq 1 \wedge \neg(3 \mid 1) \wedge \neg(3(-1))) $
+                    \end{center}
+            \end{enumerate}
+            R jest zwrotna, symetryczna oraz przechodnia.
+
+            \pagebreak
+            \begin{definition}[Relacja n-argumentowa, binarna, pusta, pełna]
+                Niech $ X_1, \ldots, X_n $ będą zbiorami. Każdy podziór $ R \subset X_1 \times \ldots \times X_n $
+                nazywamy relacją n-argumentową. \\
+                Jeżeli $ n = 2 $, to $ R \subset X_1 \times X_2 $
+                nazywamy relacją binarną. \\
+                Jeżeli $ R = \varnothing $ to R nazywamy relacją pustą. \\
+                Jeżeli $ R = X_1 \times \ldots \times X_n $, to R nazywamy relacją pełną.
+            \end{definition}
+
+            \begin{definition}[Dziedzina relacji]
+                \textbf{Dziedziną} relacji $ R \subset X \times Y $ nazywamy
+                \begin{equation*}
+                    D(R) = \{ x \in X : \exists y \in Y : (x, y) \in R \} \subset X
+                \end{equation*}
+            \end{definition}
+
+            \begin{definition}[Przeciwdziedzina relacji]
+                \textbf{Przeciwdziedziną} relacji $ R \subset X \times Y $ nazywamy
+                \begin{equation*}
+                    D^\ast(R) = \{ y \in Y : \exists x \in X : (x, y) \in R \} \subset Y
+                \end{equation*}
+                
+            \end{definition}
+
+            \subsection{Relacja równoważności} % (fold)
+            \label{sub:relacja_równoważności}
+
+            \begin{definition}[Relacja równoważności]
+                Relację $ R \subset X \times X $ nazywamy \underline{relacją równoważności} wtw.
+                R jest \textbf{zwrotna, symetryczna i przechodnia}. Relacja $ R = \varnothing $
+                jest relacją równoważności.
+            \end{definition}
+
+            \begin{definition}[Klasa abstrakcji]
+                Niech $ R \subset X \times X $ relacja równoważności, $ X \neq \varnothing, x \in X $. \\
+                \underline{Klasą abstrakcji }(klasą równoważności) elementu x (względem relacji R)\\
+                nazywamy $ [x]_R = \{ y \in X : x R y \} \subset X $.
+            \end{definition}
+
+            \begin{definition}[Zbiór ilorazowy]
+                \underline{Zbiorem ilorazowym} zbioru X przez relację R nazywamy zbiór wszystkich
+                klas abstrakcji.
+                \begin{equation*}
+                    X / R = \{ [x]_R : x \in X \} \subset X
+                \end{equation*}
+            \end{definition}
+            \hfill \\
+            \pagebreak
+            \begin{example}
+                Niech $ X = \{ 1, 2, \ldots, 16 \}, R \subset X \times X, x R y 
+                \iff 4 \mid (x^2 - y^2), \forall x, y \in X $.
+            \end{example}
+            Wyznaczyć zbiór ilorazowy $ X / R $. \\
+            Czy R jest relacją równoważności?
+                
+            \begin{equation*}
+              \begin{cases}
+                \text{R zwrotna,} \forall x \in X : 4 \mid 10 \\
+                \text{R symetryczna,} \forall x, y \in X : (4 \mid (x^2 - y^2) \implies 4 \mid (y^2 - x^2)) \\
+                \text{R przechodnia,} \forall x, y, z \in X : (4 \mid (x^2 - y^2) \wedge 4 \mid (y^2 - z^2) \implies 4 \mid (x^2 - z^2))
+              \end{cases}
+            \end{equation*}
+              $ \ldots \text{dowód} \ldots $\\\\
+              Co to jest $ [x]_R $? $ x \in X $.
+
+            \begin{equation*}
+              \begin{aligned}
+                  [x]_R &= \{ y \in X: x R y \} \\
+                  &= \{ y \in X : 4 \mid (x^2 - y^2) \} \\
+                  &= \{ y \in X: \exists k \in \mathbb{Z}: x^2 - y^2 = 4k \}
+              \end{aligned}
+            \end{equation*}
+
+            \begin{equation*}
+                4 \mid (x^2 - y^2) \iff x^2 - y^2 = 4k, k \in \mathbb{Z}
+            \end{equation*}
+
+            \begin{equation*}
+              \begin{aligned}
+                \text{np. }& [1]_R = \{ y \in X : y^2 = 1 + 4k, k \in \mathbb{Z} \} = \{ 1, 3, 5, \ldots \} \\
+                &[2]_R = \{ y \in X : y^2 = 4 + 4k, k \in \mathbb{Z} \} = y^2 = 4(1 + k) = \{2, 4, \ldots \} \\
+                &[3]_R = \{ y \in X : y^2 = 9 + 4k, k \in \mathbb{Z} \} = [1]_R \\
+                &[4]_R = [2]_R \\
+                &\vdots
+              \end{aligned}
+            \end{equation*}
+            Dwie klasy abstrakcji. $ [1]_R = A_1, [2]_R = A_2 $. \\
+            Zbiór ilorazowy $ X / R = \{ [x]_R : x \in X \} = \{ A_1, A_2 \} $
+            \pagebreak
+
+            \begin{lemat}
+                Niech $ X \neq \varnothing, R \subset X \times X $ relacja równoważności. Wtedy
+                \begin{equation*}
+                    x R y \iff [x]_R = [y]_R, \forall x, y \in X
+                \end{equation*}
+            \end{lemat}
+
+            \textbf{Dowód.}
+            \begin{itemize}
+                \item "$ \implies $"\\
+                    Niech $ x, y \in X $, takie że $ x R y $.
+
+                    \begin{itemize}
+                        \item Pokażemy, że \framebox[1.1\width]{$ [x]_R \subset [y]_R $}. \\
+                            Niech $ a \in [x]_R $. Wtedy \underline{$ a R x $}. Ponieważ równocześnie \underline{$ x R y $},
+                            to wtedy \underline{$ a R y $} (z przechodniości R). \\
+                            Zatem $ a R y $, więc $ a \in [y]_R $.
+                            Stąd \framebox[1.1\width]{$ [x]_R \subset [y]_R $}.
+
+                        \item Pokażemy, że \framebox[1.1\width]{$ [y]_R \subset [x]_R $}. \\
+                            Niech $ b \in [y]_R $. Wtedy \underline{$ b R x $} (lub yRb, R symetryczne).
+                            Ponieważ równocześnie \underline{$ x R y $ i $ y R b $},
+                            więc \underline{$ x R b $} (lub bRx, z przechodniości R). \\
+                            Stąd $ b \in [x]_R $.
+                            Stąd \framebox[1.1\width]{$ [y]_R \subset [x]_R $}.
+
+                    \end{itemize}
+
+                    Wniosek: $ [x]_R = [y]_R $
+
+                \item "$ \impliedby $"\\
+                    Niech $ x, y \in X $, takie że $ [x]_R = [y]_R $.\\
+                    Czy $ x R y $?\\
+
+                    R zwrotna: $ x R x $. Zatem $ x \in [x]_R \ass [y]_R $. Więc $ x \in [y]_R $.
+                    Stąd $ x R y $.
+            \end{itemize}
+            \pagebreak
+            % subsection relacja_równoważności (end)
             
+            \begin{definition}[Podział zbioru]
+                Niech $ X \neq \varnothing $, P rodzina podzbioru zbioru $ X. (P \subset \mathcal{P}(x)) $\\
+                Rodzinę P nazywamy \underline{podziałem zbioru X}, jeżeli
+
+                \begin{itemize}
+                    \item $ \forall A \in P, A \neq \varnothing $
+                    \item $ \forall A, B \in P : (A \neq B \implies A \cap B \neq \varnothing) $
+                    \item $ \bigcup P = X $
+                \end{itemize}
+
+                \textbf{To znaczy} P jest rodziną zbiorów nieparzystych, parami rozłącznych
+                i jej sumą jest cały zbiór X.\\
+                Zbiory rodziny P nazywamy \underline{blokami}.
+            \end{definition}
+
+            \textbf{Uwaga.} Jeżeli $ X \neq \varnothing $, to podział $ P = \{ \{ a \} : a \in X \} $
+            jest "najdrobniejszy", a $ P = \{ X \} $ (jednoelementowy) zawiera tylko jeden blok.
+
+
+            \begin{theorem}[Zasada abstakcji]
+                Niech $ X \neq \varnothing $. Wtedy:
+                \begin{enumerate}
+                    \item Jeżeli $ R \subset X \times X $ jest \underline{relacją równoważności}
+                    to wtedy zbiór ilorazowy $ X / R $ jest \underline{podzbiorem X}.
+                    \item Jeżeli P jest podzbiorem zbioru X, to wtedy relacja:
+                    \begin{equation*}
+                        \begin{cases}
+                            R \subset X \times X\\
+                            x R y \iff \underbrace{\exists C \in P : (x \in C \wedge y \in C)}_
+                            \text{"relacja pozostawania w tym samym zbiorze"}
+                        \end{cases}
+                    \end{equation*}
+                jest relacją równoważności w X.
+                \end{enumerate}
+            \end{theorem}
+
+            \begin{example}
+                Czy suma i różnica dwóch relacji równoważności jest relacją równoważności?
+            \end{example}
+
+            \textbf{Nie.} $ X = \{ 1, 2, 3 \} $\\
+            \begin{equation*}
+                \text{są relacjami równoważności}\begin{cases}
+                    R = \{ (1, 1), (2, 2), (3, 3), (1, 2), (2, 1) \}\\
+                    S = \{ (1, 1), (2, 2), (3, 3), (1, 3), (3, 1) \}
+                \end{cases}
+            \end{equation*}
+            Natomiast
+            \begin{equation*}
+                R \cup S = \{ (1, 1), (2, 2), (3, 3), (1, 2), (2, 1), (1, 3), (3, 1) \}
+            \end{equation*}
+            \begin{equation*}
+                R \setminus S = \{ (1, 2), (2, 1) \}
+            \end{equation*}
+            ponieważ $ (2, 1), (1, 3) \in R \cup S $, ale $ (2, 3) \notin R \cup S $.
         % section relacje (end)
 \end{document}
