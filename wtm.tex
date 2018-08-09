@@ -50,7 +50,7 @@
 \newcommand\tab[1][1cm]{\hspace*{#1}}
 
 \title{Wstęp do teorii mnogości}
-\author{Stanisław Migórski}
+\author{}
 \date{}
 \frenchspacing
 
@@ -1139,7 +1139,7 @@
             jest "najdrobniejszy", a $ P = \{ X \} $ (jednoelementowy) zawiera tylko jeden blok.
 
 
-            \begin{theorem}[Zasada abstakcji]
+            \begin{theorem}[Zasada abstrakcji]
                 Niech $ X \neq \varnothing $. Wtedy:
                 \begin{enumerate}
                     \item Jeżeli $ R \subset X \times X $ jest \underline{relacją równoważności}
@@ -1155,6 +1155,117 @@
                 jest relacją równoważności w X.
                 \end{enumerate}
             \end{theorem}
+
+            \textbf{Dowód.}
+            \begin{lemat}
+                Jeżeli $ X \neq \varnothing, R \subset X \times X $ jest relacją równoważności,
+                to $ x R y \iff [x]_R = [y]_R $ dla każdego $x, y \in X$.
+            \end{lemat}
+
+            \begin{enumerate}
+                \item Niech $ R \subset X \times X $ będzie relacją równoważności i niech $ X / R $
+                oznacza zbiór ilorazowy ($ X / R \subset X $).
+                    \begin{enumerate}
+                        \item $ X / R $ jest \underline{niepustą} rodziną podzbiorów zbioru X,
+                        bo $ \forall x \in X : [x]_R \in X / R $. Wtedy $ [x]_R \subset X $.
+
+                        \item Każda klasa abstrakcji jest \underline{niepustym} podzbiorem X,
+                        bo jeżeli $[x]_R \in X / R $, to $ x \in [x]_R $.
+
+                        \item Różne klasy abstrakcji są rozłączne, to znaczy\\ $( [x]_R \neq [y]_R
+                        \implies [x]_R \cap [y] = \varnothing)$.\\\\
+                        \textbf{Dowód.} (nie wprost)\\
+                        \begin{equation*}
+                            [\neg (p \implies q)] \iff (p \wedge \neg q)
+                        \end{equation*}
+                        Niech $ [x]_R \neq [y]_R, x, y \in X $ i \underline{$ [x]_R \cap [y]_R \neq \varnothing $}.\\
+                        Jeżeli $ [x]_R \cap [y]_R \neq \varnothing $, to $ \exists c \in [x]_R \cap [y]_R $.\\
+                        Wtedy $ c \in [x]_R \wedge c \in [y]_R $, to znaczy $ x R c \wedge y R c $,
+                        R jest symetryczna, to \underline{$ x R c \wedge c R y $}. \\
+                        Zatem z przechodniości R mamy \framebox[1.1\width]{$ x R y $}.\\
+
+                        Ponieważ $ [x]_R \neq [y]_R $, więc (z lematu) \framebox[1.1\width]{$\neg(x R y)$}.\\
+                        Zatem otrzymujemy sprzeczność. Zatem "$p \implies q$".
+
+                        \item $ \bigcup (X / R) = X $. \\
+
+                        Czy $X \subset \bigcup (X / R) \subset X$?
+                        \begin{itemize}
+                            \item $\bigcup (X / R) \subset X$. \\
+                            Jeżeli $x \in \bigcup (X / R)$, to $X \in X/R$. Wtedy $x \in X$.
+
+                            \item $X \subset \bigcup (X/R)$. Niech $x \in X$. Ponieważ R jest
+                            zwrotna $x \in [x]_R, [x]_R \subset X/R $. Stąd $ x \in \bigcup(X/ R) $.
+                        \end{itemize}
+                    \end{enumerate}
+
+                    \item Sprawdzamy, że relacja R jest relacją równoważności.\\
+
+                    R zwrotna tzn. $x \in X, x R x$, tzn. $ \exists C \in P : (x \in C \wedge x \in C) $\\
+                    Stąd $ \exists C \in P : x \in C $, ten związek zachodzi, bo P jest podziałem.\\
+
+                    R symetryczna : jeżeli $x R y \implies y R x$.\\
+                    $ (\exists C \in P : x \in C \wedge y \in C) \implies (\exists C \in P : (y \in C \wedge x \in C)) $
+
+                    R przechodnia : $x R y \wedge y R z \implies x R z$.\\
+                    $ \exists C \in P : (x \in C \wedge y \in C) \wedge \exists D \in P : (y \in D \wedge z \in D) $\\
+
+                    Trzeba pokazać, że $ x R z $, to znaczy $ \exists E \in P : (x \in E \wedge z \in E ) $.\\
+                    Niech $ E = C \cup D $.\\
+                    $ x \in C \subset C \cup D = E $.\\
+                    $ z \in D \subset C \cup D = E $.\\
+                    Otrzymujemy, że $ x \in E \wedge z \in E$.\\
+                    Wniosek: Relacja R jest relacją równoważności.
+
+            \end{enumerate}
+
+            \textbf{Przykłady.}
+
+            \begin{enumerate}
+                \item Niech $ R \in \mathbb{N}^2 \times \mathbb{N}^2 $ określona:
+                $ (a, b) R (c, d) \iff a + d = b + c $. Dla $a, b, c, d \in \mathbb{N} $.\\
+
+                R jest relacją \underline{relacją równoważności}. Wprowadzamy zbiór ilorazowy
+                $ X/R $, tzn. $ \mathbb{Z} = (\mathbb{N} \times \mathbb{N} ) / R $. \framebox[1.1\width]{Zbiór liczb całkowitych.}\\
+
+                Mamy utożsamienie liczby całkowitej $k$ ze zbiorem\\ $ \{(n, m) \in \mathbb{N} \times \mathbb{N} : k = m - n \} $
+
+                \item Niech $R \subset (\mathbb{Z} \times \mathbb{Z} \setminus \{0\}) \times
+                \underbrace{(\mathbb{Z} \times \mathbb{Z} \setminus \{0\})}_X $ określona: \\
+                $(a, b) R (c, d) \iff ad = bc $ dla $ a, b, c, d \in X $.\\
+
+                R jest relacją równoważności, wtedy wprowadzamy zbiór ilorazowy:
+                \begin{equation*}
+                    \mathbb{Q} = (\mathbb{Z} \times \mathbb{Z} \setminus \{0\}) / R \tab \framebox[1.1\width]{zbiór liczb wymiernych}
+                \end{equation*}
+                Utożsamienie liczby wymiernej $ q $ ze zbiorem:
+                \begin{equation*}
+                    \{ (k, l) \in \mathbb{Z} \times \mathbb{Z} \setminus \{0\} : \frac{k}{l} = q \}
+                \end{equation*}
+
+                \item Ciąg Cauchy'ego (podstawowy) \\
+                \textbf{Definicja.} \\
+                Ciąg $ \{a_n\} \subset \mathbb{Q} $ nazywamy ciągniem Cauchy'ego $\iff$
+                \begin{equation*}
+                    (\forall \varepsilon > 0, \exists N \geq 1, \forall m, n \geq N : |a_m - a_n| \leq \varepsilon)
+                \end{equation*}
+
+                Niech $ F = \{ \{ a_n \} \subset \mathbb{Q} : a_n \text{ciąg podstawowy} \} $.\\
+
+                Niech $ R \subset F \times F $ będzie określona:
+                \begin{equation*}
+                    \{ a_n \} R \{ b_n \} \iff \lim_{n \rightarrow \infty}(a_n - b_n) = 0
+                \end{equation*}
+                \begin{equation*}
+                \text{dla   } \{ a_n \}, \{ b_n \} \in F
+                \end{equation*}
+
+                R jest \underline{równoważności}. Wprowadzamy
+                \begin{equation*}
+                    \mathbb{R} = F / R
+                \end{equation*}
+            \end{enumerate}
+
 
             \begin{example}
                 Czy suma i różnica dwóch relacji równoważności jest relacją równoważności?
